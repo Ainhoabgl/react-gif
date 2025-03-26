@@ -1,13 +1,11 @@
 // Este componente recibe una categoría y se encarga de:
-
 // Hacer la petición a la API de Giphy (a través de getGifs).
-
 // Guardar las imágenes en el estado (images).
-
 // Renderizar una lista de <GifItem /> con los GIFs obtenidos.
 
 import { GifItem } from "./GifItem";
 import { useFetchGifs } from "../hooks/useFetchGifs";
+import PropTypes from "prop-types";
 
 export const GifGrid = ({ categoria }) => {
     const { images, isLoading } = useFetchGifs(categoria);
@@ -29,4 +27,6 @@ export const GifGrid = ({ categoria }) => {
         </>
     );
 };
-
+GifGrid.propTypes = {
+    categoria: PropTypes.string.isRequired
+}

@@ -13,7 +13,7 @@ export const useFetchGifs = (categoria) => {
 
     useEffect(() => {
         getImages();
-    }, [categoria]); // Asegura que se ejecuta cuando cambia la categoría
+    }, []); // Asegura que se ejecuta cuando cambia la categoría
 
     return {
         images,

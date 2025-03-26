@@ -2,12 +2,13 @@
 //Cuando el usuario presiona "Enter", la nueva categoría se envía a GifExpertApp.
 
 import { useState } from "react"
+import { PropTypes } from "prop-types";
 
 export const AddCategory = ({onNewCategory}) => {
 
     const [inputValue, setinputValue] = useState('')
-    const onInputChange= (event) => {
-        setinputValue(event.target.value);
+    const onInputChange= ({target}) => {
+        setinputValue(target.value);
     }
 
     const onSubmit = (event)=> {
@@ -16,11 +17,11 @@ export const AddCategory = ({onNewCategory}) => {
         if(inputValue.trim().length <= 1)return;
         // setCategorias(categorias=>[inputValue, ...categorias])
         //cada vez que se envíe una petición se limpiará el contenido del input
-        onNewCategory(inputValue.trim());
         setinputValue('');
+        onNewCategory(inputValue.trim());
     }
   return (
-    <form onSubmit={(event) => onSubmit(event)}>
+    <form onSubmit={onSubmit} aria-label="form">
         <input 
             type="text" 
             placeholder="Buscar Gifs"
@@ -30,4 +31,8 @@ export const AddCategory = ({onNewCategory}) => {
     </form>
     
   )
+}
+
+AddCategory.propTypes = {
+    onNewCategory: PropTypes.func.isRequired,
 }
